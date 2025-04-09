@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // Importe o React e os hooks
+import React, { useState, useEffect } from 'react';
 import KpiCards from './components/KpiCards';
 import AgeChart from './components/AgeChart';
 import DayHoursChart from './components/DayHoursChart';
@@ -7,6 +7,7 @@ import ClustersChart from './components/ClustersChart';
 import ClassificationDisplay from './components/ClassificationDisplay';
 import AssociationsTable from './components/AssociationsTable';
 import PivotTable from './components/PivotTable';
+import './App.css'; // Importe o arquivo CSS
 
 function App() {
   const [kpis, setKpis] = useState(null);
@@ -32,8 +33,8 @@ function App() {
         const associationsResponse = await fetch('http://localhost:3000/api/associacoes');
         const pivotResponse = await fetch('http://localhost:3000/api/pivot?linha=genero&coluna=tipo_uso');
 
-        if (!kpisResponse.ok || !ageResponse.ok || !dayHoursResponse.ok || 
-            !dayMediaResponse.ok || !clustersResponse.ok || !classificationResponse.ok || 
+        if (!kpisResponse.ok || !ageResponse.ok || !dayHoursResponse.ok ||
+            !dayMediaResponse.ok || !clustersResponse.ok || !classificationResponse.ok ||
             !associationsResponse.ok || !pivotResponse.ok) {
           throw new Error('Erro ao buscar dados da API');
         }
@@ -75,17 +76,39 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Análise de Uso de Tela</h1>
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <h1>Análise de Uso de Tela</h1>
+        {/* Aqui você pode adicionar um componente de seleção ou outros elementos do cabeçalho */}
+      </header>
 
-      {kpis && <KpiCards kpis={kpis} />}
-      {ageData && <AgeChart data={ageData} />}
-      {dayHoursData && <DayHoursChart data={dayHoursData} />}
-      {dayMediaData && <DayMediaChart data={dayMediaData} />}
-      {clustersData && <ClustersChart data={clustersData} />}
-      {classificationData && <ClassificationDisplay data={classificationData} />}
-      {associationsData && <AssociationsTable data={associationsData} />}
-      {pivotData && <PivotTable data={pivotData} />}
+      <div className="kpi-cards-section">
+        {kpis && <KpiCards kpis={kpis} />}
+      </div>
+
+      <div className="charts-grid">
+        <div className="chart-item">
+          {ageData && <AgeChart data={ageData} />}
+        </div>
+        <div className="chart-item">
+          {dayHoursData && <DayHoursChart data={dayHoursData} />}
+        </div>
+        <div className="chart-item">
+          {dayMediaData && <DayMediaChart data={dayMediaData} />}
+        </div>
+        <div className="chart-item">
+          {clustersData && <ClustersChart data={clustersData} />}
+        </div>
+        <div className="chart-item">
+          {classificationData && <ClassificationDisplay data={classificationData} />}
+        </div>
+        <div className="chart-item">
+          {associationsData && <AssociationsTable data={associationsData} />}
+        </div>
+        <div className="chart-item">
+          {pivotData && <PivotTable data={pivotData} />}
+        </div>
+      </div>
     </div>
   );
 }

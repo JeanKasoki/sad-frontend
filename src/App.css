@@ -1,38 +1,35 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.dashboard-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f4f4f4;
 }
 
-.App-link {
-  color: #61dafb;
+.dashboard-header {
+  padding-bottom: 20px;
+  text-align: left; /* Alinhar o título à esquerda como na imagem */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.kpi-cards-section {
+  margin-bottom: 20px;
 }
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Cria colunas responsivas com largura mínima de 400px */
+  gap: 20px;
+}
+
+.chart-item {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos adicionais para os componentes individuais, se necessário */
+/* Por exemplo, para forçar uma altura mínima nos gráficos: */
+/* .chart-item > div {
+  min-height: 300px;
+} */
