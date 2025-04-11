@@ -7,7 +7,7 @@ const StyledCard = styled(Card)({
   backgroundColor: '#f5f5f5',
 });
 
-function KpiCards({ kpis }) {
+function KpiCards() {
   return (
     <div>
       <Typography variant="h4" gutterBottom>
@@ -16,31 +16,31 @@ function KpiCards({ kpis }) {
       <StyledCard>
         <CardContent>
           <Typography variant="h6">Tempo Médio Total de Uso de Tela</Typography>
-          <Typography variant="body1">{kpis.tempoMedioTotal} horas</Typography>
+          <Typography variant="body1">4.49 horas</Typography>
         </CardContent>
       </StyledCard>
       <StyledCard>
         <CardContent>
           <Typography variant="h6">Tempo Médio Educacional</Typography>
-          <Typography variant="body1">{kpis.tempoMedioEducacional} horas</Typography>
+          <Typography variant="body1">1.23 horas</Typography>
         </CardContent>
       </StyledCard>
       <StyledCard>
         <CardContent>
           <Typography variant="h6">Tempo Médio Recreativo</Typography>
-          <Typography variant="body1">{kpis.tempoMedioRecreativo} horas</Typography>
+          <Typography variant="body1">3.26 horas</Typography>
         </CardContent>
       </StyledCard>
       <StyledCard>
         <CardContent>
           <Typography variant="h6">Percentual do Tempo Educacional</Typography>
-          <Typography variant="body1">{kpis.percentualEducacional}%</Typography>
+          <Typography variant="body1">27.43%</Typography>
         </CardContent>
       </StyledCard>
       <StyledCard>
         <CardContent>
           <Typography variant="h6">Percentual do Tempo Recreativo</Typography>
-          <Typography variant="body1">{kpis.percentualRecreativo}%</Typography>
+          <Typography variant="body1">72.56%</Typography>
         </CardContent>
       </StyledCard>
     </div>
@@ -48,4 +48,3 @@ function KpiCards({ kpis }) {
 }
 
 export default KpiCards;
-

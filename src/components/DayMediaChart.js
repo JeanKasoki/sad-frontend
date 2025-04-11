@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { Paper, styled } from '@mui/material'; // Importe Paper e styled
 
 ChartJS.register(
   CategoryScale,
@@ -19,7 +20,21 @@ ChartJS.register(
   Legend
 );
 
-function DayMediaChart({ data }) {
+const StyledPaper = styled(Paper)({ // Defina o StyledPaper
+  padding: '16px',
+  marginBottom: '16px',
+  backgroundColor: '#f5f5f5',
+  border: '1px solid #ccc',
+  overflow: 'auto',
+  maxHeight: '600px', // Opcional: ajuste a altura máxima se necessário
+});
+
+function DayMediaChart() {
+  const data = [
+    { tipo_dia: 'Dias Úteis', tempo_medio_ponderado: 3.74 },
+    { tipo_dia: 'Fim de Semana', tempo_medio_ponderado: 4.68 },
+  ];
+
   const chartData = {
     labels: data.map(item => item.tipo_dia),
     datasets: [
@@ -40,10 +55,28 @@ function DayMediaChart({ data }) {
         display: true,
         text: 'Média Ponderada de Uso de Tela por Tipo de Dia',
       },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            let label = context.dataset.label || '';
+            if (label) {
+              label += ': ';
+            }
+            if (context.parsed.y !== null) {
+              label += context.parsed.y.toFixed(2) + ' horas';
+            }
+            return label;
+          }
+        }
+      }
     },
   };
 
-  return <Bar data={chartData} options={options} />;
+  return (
+    <StyledPaper>
+      <Bar data={chartData} options={options} />
+    </StyledPaper>
+  );
 }
 
 export default DayMediaChart;
